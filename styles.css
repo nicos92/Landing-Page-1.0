@@ -976,6 +976,10 @@ body.sidebar-open {
     color: var(--primary-light);
 }
 
+.stat-suffix.plus-sign {
+    font-size: 2rem;
+}
+
 .stat-label {
     display: block;
     font-size: 0.8rem;
