@@ -1034,8 +1034,10 @@
                     </div>
                 </div>
 
-                <form class="contact-form animate-on-scroll" data-reveal="right" id="contactForm" novalidate
+                <form class="contact-form animate-on-scroll" data-reveal="right" id="contactForm"
                     action="https://formspree.io/f/xkokneyv" method="POST">
+                    <input type="hidden" name="_subject" value="Nuevo mensaje desde tu web">
+                    <input type="hidden" name="_captcha" value="false">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Nombre completo</label>

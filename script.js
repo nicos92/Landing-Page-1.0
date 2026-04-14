@@ -447,3 +447,28 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 })
+
+// ─── Configuración para envios de emails ───
+document
+  .getElementById('contactForm')
+  .addEventListener('submit', async function (e) {
+    e.preventDefault()
+
+    const form = e.target
+    const data = new FormData(form)
+
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+
+    if (response.ok) {
+      document.getElementById('formSuccess').style.display = 'block'
+      form.reset()
+    } else {
+      alert('Error al enviar el mensaje')
+    }
+  })
