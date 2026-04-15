@@ -1437,9 +1437,14 @@ body.sidebar-open {
    EQUIPO
    ═══════════════════════════════════════════ */
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 28px;
+}
+
+.team-grid .team-card {
+    flex: 0 1 calc(33.333% - 19px);
 }
 
 .team-card {
@@ -2013,139 +2018,6 @@ body.sidebar-open {
     color: var(--accent);
 }
 
-/* ═══════════════════════════════════════════
-   CERTIFICACIONES
-   ═══════════════════════════════════════════ */
-.certifications-section {
-    padding: 60px 0;
-    background: var(--gray-50);
-    border-top: 1px solid var(--gray-200);
-    border-bottom: 1px solid var(--gray-200);
-}
-
-.certifications-content {
-    text-align: center;
-}
-
-.certifications-content h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--gray-900);
-    margin-bottom: 32px;
-}
-
-.cert-badges {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-}
-
-.cert-badge {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 16px 24px;
-    background: var(--white);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    transition: all var(--transition);
-}
-
-.cert-badge:hover {
-    border-color: var(--primary-light);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-}
-
-.cert-badge i {
-    font-size: 1.5rem;
-    color: var(--primary-light);
-}
-
-.cert-badge strong {
-    display: block;
-    font-size: 0.95rem;
-    color: var(--gray-900);
-}
-
-.cert-badge span {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--gray-500);
-}
-
-/* ═══════════════════════════════════════════
-   NEWSLETTER
-   ═══════════════════════════════════════════ */
-.newsletter-section {
-    padding: 60px 0;
-    background: var(--dark);
-    border-top: 1px solid rgba(59, 130, 246, 0.15);
-}
-
-.newsletter-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-    flex-wrap: wrap;
-}
-
-.newsletter-text {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    color: var(--white);
-}
-
-.newsletter-text>i {
-    font-size: 2.5rem;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.newsletter-text h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-
-.newsletter-text p {
-    font-size: 0.9rem;
-    color: var(--gray-400);
-}
-
-.newsletter-form {
-    display: flex;
-    gap: 12px;
-    flex: 1;
-    max-width: 460px;
-}
-
-.newsletter-form input {
-    flex: 1;
-    padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius);
-    color: var(--white);
-    font-size: 0.95rem;
-    font-family: var(--font);
-    outline: none;
-    transition: all var(--transition);
-}
-
-.newsletter-form input:focus {
-    border-color: var(--primary-light);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-
-.newsletter-form input::placeholder {
-    color: var(--gray-600);
-}
 
 /* ═══════════════════════════════════════════
    CONTACTO
@@ -2719,8 +2591,8 @@ body.sidebar-open {
 
 /* ─── Large Desktop: 1280px ─────────────── */
 @media (max-width: 1280px) {
-    .team-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .team-grid .team-card {
+        flex: 0 1 calc(50% - 14px);
     }
 
     .fabrication-highlights {
@@ -2907,8 +2779,11 @@ body.sidebar-open {
 
     /* ── Team ── */
     .team-grid {
-        grid-template-columns: 1fr 1fr;
         gap: 16px;
+    }
+
+    .team-grid .team-card {
+        flex: 0 1 calc(50% - 8px);
     }
 
     .team-card {
@@ -3268,7 +3143,6 @@ body.sidebar-open {
 
     /* ── Team ── */
     .team-grid {
-        grid-template-columns: 1fr;
         max-width: 320px;
         margin: 0 auto;
     }
