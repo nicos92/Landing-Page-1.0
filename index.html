@@ -813,6 +813,9 @@
                     action="https://formspree.io/f/xkokneyv" method="POST">
                     <input type="hidden" name="_subject" value="Nuevo mensaje desde tu web">
                     <input type="hidden" name="_captcha" value="false">
+                    <div class="honeypot-field" aria-hidden="true">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off">
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Nombre completo</label>
@@ -932,7 +935,7 @@
         <span class="whatsapp-tooltip">¡Escribinos por WhatsApp!</span>
     </a>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
