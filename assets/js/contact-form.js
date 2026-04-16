@@ -2,9 +2,34 @@
    Contact Form Module
    ═══════════════════════════════════════════ */
 
+// ─── Honeypot Validator (SRP: Solo detección de bots) ─────
+export class HoneypotValidator {
+  static HONEYPOT_FIELD = 'website'
+  static TIMING_THRESHOLD = 3000
+
+  constructor(form) {
+    this.form = form
+    this.startTime = Date.now()
+  }
+
+  validate() {
+    const honeypotField = this.form.querySelector(`[name="${HoneypotValidator.HONEYPOT_FIELD}"]`)
+    if (!honeypotField) return { isBot: false }
+
+    const fieldValue = honeypotField.value.trim()
+    const elapsedTime = Date.now() - this.startTime
+
+    const isBot = fieldValue !== '' || elapsedTime < HoneypotValidator.TIMING_THRESHOLD
+
+    return { isBot }
+  }
+}
+
+// ─── Form Validator ──────────────────────────────────────
 export class FormValidator {
   constructor(form) {
     this.form = form
+    this.honeypot = new HoneypotValidator(form)
   }
 
   static isValidEmail(email) {
@@ -12,6 +37,15 @@ export class FormValidator {
   }
 
   validate() {
+    const { isBot } = this.honeypot.validate()
+    if (isBot) {
+      return {
+        isValid: false,
+        errors: [{ field: '_honeypot', message: '' }],
+        isBotDetected: true,
+      }
+    }
+
     const name = document.getElementById('name').value.trim()
     const email = document.getElementById('email').value.trim()
     const subject = document.getElementById('subject').value.trim()
@@ -160,7 +194,12 @@ export class ContactFormController {
     e.preventDefault()
     this.ui.clearAllErrors()
 
-    const { isValid, errors } = this.validator.validate()
+    const { isValid, errors, isBotDetected } = this.validator.validate()
+
+    if (isBotDetected) {
+      this.ui.resetButton()
+      return
+    }
 
     if (!isValid) {
       errors.forEach((err) => this.ui.showError(err.field, err.message))

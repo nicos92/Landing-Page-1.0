@@ -2152,6 +2152,18 @@ body.sidebar-open {
 }
 
 /* Formulario */
+.honeypot-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+}
+
+.honeypot-field input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .contact-form {
     background: var(--dark-card);
     border: 1px solid rgba(255, 255, 255, 0.06);
