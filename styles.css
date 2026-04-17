@@ -2080,11 +2080,8 @@ body.sidebar-open {
     line-height: 1.6;
 }
 
-
-
-
 /* ═══════════════════════════════════════════
-   NOTICIAS
+   Proyectos y Noticias
    ═══════════════════════════════════════════ */
 .news-grid {
     display: grid;
@@ -2192,6 +2189,112 @@ body.sidebar-open {
     color: var(--accent);
 }
 
+/* ═══════════════════════════════════════════
+   FAQ - Preguntas Frecuentes
+   ═══════════════════════════════════════════ */
+
+.faq-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    background: var(--dark-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition);
+}
+
+.faq-item:hover {
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+.faq-item.active {
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.08);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 24px;
+    background: none;
+    border: none;
+    color: var(--gray-300);
+    font-family: var(--font);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.faq-question:hover {
+    color: var(--white);
+}
+
+.faq-item.active .faq-question {
+    color: var(--white);
+}
+
+.faq-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--primary-light);
+    font-size: 0.95rem;
+    transition: all var(--transition);
+}
+
+.faq-item.active .faq-icon {
+    background: var(--gradient);
+    color: var(--white);
+}
+
+.faq-question span {
+    flex: 1;
+}
+
+.faq-arrow {
+    font-size: 0.8rem;
+    color: var(--gray-400);
+    transition: transform var(--transition), color var(--transition);
+    flex-shrink: 0;
+}
+
+.faq-item.active .faq-arrow {
+    transform: rotate(180deg);
+    color: var(--primary-light);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 24px 0 80px;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    padding: 0 24px 22px 80px;
+}
+
+.faq-answer p {
+    font-size: 0.95rem;
+    color: var(--gray-400);
+    line-height: 1.7;
+}
 
 /* ═══════════════════════════════════════════
    CONTACTO
@@ -3040,6 +3143,27 @@ body.sidebar-open {
 
     .news-featured {
         grid-template-columns: 1fr;
+    }
+
+    /* ── FAQ ── */
+    .faq-answer {
+        padding: 0 16px 0 56px;
+    }
+
+    .faq-item.active .faq-answer {
+        padding: 0 16px 18px 56px;
+    }
+
+    .faq-question {
+        padding: 18px 16px;
+        gap: 12px;
+        font-size: 0.9rem;
+    }
+
+    .faq-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
     }
 
     /* ── Certifications ── */

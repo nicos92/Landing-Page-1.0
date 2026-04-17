@@ -345,6 +345,23 @@ import { ContactFormController } from './assets/js/contact-form.js'
       observer.observe(el)
     })
 
+    // ─── FAQ Accordion ─────────────────────────
+    document.querySelectorAll('.faq-question').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item')
+        const isActive = item.classList.contains('active')
+
+        // Cerrar todos los demás
+        document.querySelectorAll('.faq-item.active').forEach((open) => {
+          if (open !== item) open.classList.remove('active')
+        })
+
+        // Toggle el actual
+        item.classList.toggle('active', !isActive)
+        btn.setAttribute('aria-expanded', !isActive)
+      })
+    })
+
     // ─── Process Line Animation ────────────────
     const processLine = document.getElementById('processLine')
     if (processLine) {
